@@ -18,8 +18,22 @@ angular.module('starter.controllers', [])
     }
   $scope.FBLogin = function() {
       var provider = new firebase.auth.FacebookAuthProvider();
-      firebase.auth().signInWithPopup(provider);
+      firebase.auth().signInWithPopup(provider).then(function (authData) {
+        console.log(authData);
+      }).catch(function(error) {
+        console.log(error);
+      });
   }
+})
+
+.controller('LogoutCtr', function($scope) {
+  firebase.auth().signOut().then(function() {
+    // Sign-out is good!
+  }, function(error) {
+    console.log(error);
+  });
+
+  // TODO: redirect back to login page
 })
 
 .controller('ProfileCtr', function($scope) {})
