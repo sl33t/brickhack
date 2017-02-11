@@ -1,3 +1,3 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {});
+.controller('LoginCtr', function($scope) {});
