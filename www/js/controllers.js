@@ -18,4 +18,6 @@ angular.module('starter.controllers', [])
     }
 })
 
-.controller('DashboardCtr', function($scope) {});
+.controller('ProfileCtr', function($scope) {})
+.controller('QuestCtr', function($scope) {})
+.controller('FriendsCtr', function($scope) {});
