@@ -25,10 +25,4 @@ angular.module('starter.services', [])
       }
       return promise;
     }
-}})
-
-// TODO see if this works/ is necessary for calling JS in html?
-.service('FBLogin', function() {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-});
+  }});
