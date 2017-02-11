@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 .background, .background .pane, .background .item, .background .item-complex .item-content {
-  background-color: red;
+  background-image: -webkit-radial-gradient(circle, red 60%, black);
 }
 
 .center, .center * {
@@ -19,7 +19,6 @@
 
 .login_image {
   background-color: white;
-  border: .5rem solid gold;
   padding: 1rem;
   border-radius: 50%;
 }
