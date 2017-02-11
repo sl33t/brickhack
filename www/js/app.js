@@ -34,7 +34,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Setup landing login screen
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/tab-login.html',
+    templateUrl: 'templates/login.html',
     controller: 'LoginCtr'
   })
 
@@ -43,6 +43,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
+  })
+
+    .state('tab.dashboard', {
+      url: '/dashboard',
+      views: {
+        'tab-dashboard': {
+          templateUrl: 'templates/dashboard.html',
+          controller: 'DashboardCtr'
+        }
+      }
   });
 
   // Each tab has its own nav history stack:
