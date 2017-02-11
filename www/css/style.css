@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.background, .background .pane, .background .item, .background .item-complex .item-content {
+  background-color: red;
+}
+
 .center, .center * {
   margin: auto;
   display: block;
@@ -6,9 +10,16 @@
 }
 
 .login {
-  width: 300px;
+  width: 260px;
 }
 
 .login * {
   margin-top: 1rem;
+}
+
+.login_image {
+  background-color: white;
+  border: .5rem solid gold;
+  padding: 1rem;
+  border-radius: 50%;
 }
