@@ -2,6 +2,13 @@
   <ion-content class="login center padding">
     <img class="login_image" src="img/Dragon1.png">
     <h2>Name Here</h2>
-    <button class="button button-royal icon ion-social-facebook" ng-click=""> Login with Facebook</button>
+    <script>
+     function fbLogin() {
+	 var provider = new firebase.auth.FacebookAuthProvider();
+	 firebase.auth().signInWithRedirect(provider);
+     }
+    </script>
+
+    <button onclick="fbLogin()" class="button button-royal icon ion-social-facebook"> Login with Facebook</button>
   </ion-content>
 </ion-view>
