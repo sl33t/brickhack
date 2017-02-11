@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
     }
   $scope.FBLogin = function() {
       var provider = new firebase.auth.FacebookAuthProvider();
-      firebase.auth().signInWithRedirect(provider);
+      firebase.auth().signInWithPopup(provider);
   }
 })
 
