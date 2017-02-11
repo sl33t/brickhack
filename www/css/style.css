@@ -1,1 +1,14 @@
 /* Empty. Add your own CSS if you like */
+.center, .center * {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.login {
+  width: 300px;
+}
+
+.login * {
+  margin-top: 1rem;
+}
