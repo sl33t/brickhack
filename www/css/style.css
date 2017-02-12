@@ -21,6 +21,14 @@ p, span {
   background-image: linear-gradient(red, black);
 }
 
+.menu {
+  background: none;
+}
+
+.title {
+  font-size: 1.75rem !important;
+}
+
 .center {
   margin: auto;
   display: block;
@@ -54,16 +62,12 @@ p, span {
 }
 
 .profile ul {
-<<<<<<< HEAD
-  margin-top: 1.75rem; 
-=======
   margin-top: 2rem;
->>>>>>> 2ee13a51971560db9c20b8619fb5bb342a995579
   float: left;
 }
 
 .profile .info {
-  margin-top: 1.75rem; 
+  margin-top: 1.75rem;
   float: right;
   text-align: center;
   width: 60%;
