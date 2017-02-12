@@ -75,9 +75,10 @@ angular.module('starter.controllers', [])
       return snapshot.val();
     }).then(function (profile) {
       var stat_html = '';
-      for (var elem in profile) {
-        if (profile.hasOwnProperty(elem) && elem != "name")
-          stat_html += '<li>' + profile[elem] + '</li>';
+      var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+      for (var i = 0; i < statOrder.length; i++) {
+        var statName = statOrder[i];
+          stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
