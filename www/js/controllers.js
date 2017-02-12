@@ -20,18 +20,28 @@ angular.module('starter.controllers', [])
       var provider = new firebase.auth.FacebookAuthProvider();
       firebase.auth().signInWithPopup(provider).then(function (authData) {
         console.log(authData);
-		var uid = authData.user.uid;
-		firebase.database().ref('users/' + uid).set({'name' : 'jerry'});
+		var face_data = [authData.user.uid, authData.user.displayName];
+		firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
+			if(snapshot.val() !== null){
+				console.log('User exists');
+			}
+			else{
+				console.log('User doesn\'t exist');
+				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
+			}
+		});
+		/*firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1]});
 		var temp;
-		firebase.database().ref('users/' + uid).once('value').then(function(snapshot){
+		firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
 			temp = snapshot.key;
-			console.log('Parent' + snapshot.key);
-			if(uid == temp){
-			console.log('success');
+			console.log('Parent: ' + snapshot.key);
+			if(face_data[0] == temp){
+				console.log('success');
 			}
 			else{console.log('failure'); }
-		});
-
+		}); **/
+		//updates name to 'not jerry'
+		//firebase.database().ref('users/' + uid).set({'name' : 'not jerry'});
         $state.go('app.profile');
       }).catch(function(error) {
         console.log(error);
@@ -49,7 +59,9 @@ angular.module('starter.controllers', [])
   // TODO: redirect back to login page
 })
 
-.controller('ProfileCtr', function($scope) {})
+.controller('ProfileCtr', function($scope) {
+
+})
 .controller('QuestCtr', function($scope) {})
 .controller('FriendsCtr', function($scope) {})
 
