@@ -70,20 +70,19 @@ angular.module('starter.controllers', [])
 .controller('ProfileCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid; 
 	console.log(user); 
-	var profile;
-	firebase.database().ref('users/' + user).once('value').then(function(snapshot, profile){
-		profile = snapshot.val();
-		var stat_html = '';
-		stat_html += '<li>' + profile.str + '</li>';
-		stat_html += '<li>' + profile.dex + '</li>';
-		stat_html += '<li>' + profile.con + '</li>';
-		stat_html += '<li>' + profile.int + '</li>';
-		stat_html += '<li>' + profile.wis + '</li>';
-		stat_html += '<li>' + profile.cha + '</li>';
-		document.getElementById('stats').innerHTML = stat_html;
-		var info = document.getElementsByClassName('info');
-		info[0].innerHTML =  '<h3>' + profile.name + '</h3>';
-	});
+	//var profile;
+	firebase.database().ref('users/' + user).once('value').then(function(snapshot){
+      return snapshot.val();
+    }).then(function (profile) {
+      var stat_html = '';
+      for (var elem in profile) {
+        if (profile.hasOwnProperty(elem) && elem != "name")
+          stat_html += '<li>' + profile[elem] + '</li>';
+      }
+      document.getElementById('stats').innerHTML = stat_html;
+      var info = document.getElementsByClassName('info');
+      info[0].innerHTML =  '<h3>' + profile.name + '</h3>';
+    });
 })
 .controller('QuestCtr', function($scope) {
 
