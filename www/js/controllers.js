@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
 			}
-			$stiate.go('app.profle', {user : face_data[0]});
+			$state.go('app.profile', {user : face_data[0]});
 		});
       }).catch(function(error) {
         console.log(error);
