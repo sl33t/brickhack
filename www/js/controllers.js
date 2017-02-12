@@ -54,22 +54,9 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('LogoutCtr', function($scope) {
-
-  $scope.logout = function() {
-    firebase.auth().signOut().then(function() {
-      // Sign-out is good!
-    }, function(error) {
-      console.log(error);
-    });
-
-    $state.go('login');
-  }
-})
-
 .controller('ProfileCtr', function($scope) {
-	var user = firebase.auth().currentUser.uid; 
-	console.log(user); 
+	var user = firebase.auth().currentUser.uid;
+	console.log(user);
 	//var profile;
 	firebase.database().ref('users/' + user).once('value').then(function(snapshot){
       return snapshot.val();
@@ -105,6 +92,7 @@ angular.module('starter.controllers', [])
   }
 })
 .controller('FriendsCtr', function($scope) {})
+.controller('CommunityCtr', function($scope) {})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
   $scope.logout = function() {

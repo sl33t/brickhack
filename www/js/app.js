@@ -71,7 +71,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'FriendsCtr'
         }
       }
-    });
+    })
+
+      .state('app.community', {
+        url: '/community',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/community.html',
+            controller: 'CommunityCtr'
+          }
+        }
+      });
 
   // Each tab has its own nav history stack:
 
