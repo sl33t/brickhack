@@ -109,12 +109,26 @@ p, span {
   width: 100%;
 }
 
+.record span {
+  margin-left: 1rem;
+}
+
 .challenge {
   border: .1rem solid white;
 }
 
 .record, .share {
   background-color: rgba( 255, 255, 255, .2);
+}
+
+.share {
+  padding: 1rem;
+}
+
+.share a {
+  text-align: center;
+  float: none !important;
+  padding: 0rem !important;
 }
 
 .quest video {
