@@ -61,8 +61,8 @@ angular.module('starter.controllers', [])
       var profile = snapshot.val();
       var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
-        var statName = statOrder[i];
-        stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+          var statName = statOrder[i];
+          stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
@@ -93,6 +93,7 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {})
 .controller('CommunityCtr', function($scope) {})
+.controller('NotificationCtr', function($scope) {})
 .controller('ShareCheckCtr', function($scope) {})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {

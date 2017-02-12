@@ -63,6 +63,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('app.notifications', {
+        url: '/notifications',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/notification.html',
+                controller: 'NotificationCtr'
+            }
+        }
+    })
     .state('app.friends', {
       url: '/friends',
       views: {
