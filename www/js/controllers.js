@@ -16,6 +16,7 @@ angular.module('starter.controllers', [])
 			else{
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
+				firebase.database().ref('friends/').set(face_data[0]); 
 			}
 			$state.go('app.profile');
 		});
@@ -91,9 +92,14 @@ angular.module('starter.controllers', [])
     navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
   }
 })
-.controller('FriendsCtr', function($scope) {})
+.controller('FriendsCtr', function($scope) {
+	var user = firebase.auth().currentUser.uid;
+	firebase.database().ref('friends/' + user).on(
+})
 .controller('CommunityCtr', function($scope) {})
-.controller('NotificationCtr', function($scope) {})
+.controller('NotificationCtr', function($scope) {
+	var user = firebase.auth().currentUser.uid;
+})
 .controller('ShareCheckCtr', function($scope) {})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
