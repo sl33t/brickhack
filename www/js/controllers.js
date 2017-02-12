@@ -156,17 +156,18 @@ angular.module('starter.controllers', [])
 	var user = firebase.auth().currentUser.uid;
 	firebase.database().ref("/notifications/" + user).on("value", function(snapshot) {
   var notifs = snapshot.val();
+  console.log(notifs); 
   for(var notif in notifs){
-    //display
-    myhtml += '<div class="content">' +
-    '<h3>' + notif["user"] + '</h3>' +
-    '<p>' + notif["type"] + '</p>' +
-    '</div>' +
-    '<a href="#/approve_notification"><span class="ion-checkmark"></span></a>' +
-    '<a href="#/decline_notification"><span class="ion-close-round"></span></a>' +
-    '</div>';
+	  console.log(notif);
+	  myhtml += '<div class="content">' +
+		'<h3>' + notifs[notif]["user"] + '</h3>' +
+		'<p>' + notifs[notif]["type"] + '</p>' +
+		'</div>' +
+		'<a href="#/approve_notification"><span class="ion-checkmark"></span></a>' +
+		'<a href="#/decline_notification"><span class="ion-close-round"></span></a>' +
+		'</div>'; 
   }
-  document.getElementById('notification_panel').innerHTML = friend_html;
+  document.getElementById('notification_panel').innerHTML = myhtml;
   })
 })
 .controller('ShareCheckCtr', function($scope) {
