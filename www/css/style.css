@@ -17,7 +17,7 @@ p, span {
   display: none;
 }
 
-.background .pane {
+.background .pane, .ion_content {
   background-image: linear-gradient(red, black);
 }
 
@@ -116,4 +116,28 @@ p, span {
 
 .quest span {
   margin-right: 1rem;
+}
+
+.ion_content .item {
+  background-color: transparent;
+  border:none;   /*Removes all borders*/
+  color: white;    /*Text color for each item*/
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/*Changes the border for the last item*/
+.ion_content .item:last-child {
+}
+
+.ion_content .item-complex .item-content, .dark .item-radio .item-content {
+  background-color: transparent;
+}
+
+/*Just makes the type white*/
+.ion_content h2,
+.ion_content h3,
+.ion_content p,
+.ion_content a {
+  color: white;  /*Text color for each item, overrides the color property above*/
 }
