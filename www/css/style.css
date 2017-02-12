@@ -1,24 +1,51 @@
 /* Empty. Add your own CSS if you like */
 .background, .background .pane, .background .item, .background .item-complex .item-content {
-  background-image: -webkit-radial-gradient(circle, red 60%, black);
+  background-image: linear-gradient(red, black);
 }
 
-.center, .center * {
+.center {
   margin: auto;
   display: block;
   text-align: center;
 }
 
-.login {
-  width: 260px;
+.app {
+  width: 300px;
 }
 
 .login * {
   margin-top: 1rem;
 }
 
-.login_image {
+.login img {
   background-color: white;
   padding: 1rem;
   border-radius: 50%;
+}
+
+.profile li {
+  border: .2rem solid white;
+  padding: 2rem;
+  border-radius: 50%;
+  width: 3rem;
+  margin: .5rem;
+}
+
+.profile ul {
+  float: left;
+}
+
+.profile .info {
+  float: right;
+  text-align: left;
+}
+
+.profile .info h3 {
+  display: inline-block;
+  margin-right: 1rem;
+  color: white;
+}
+
+.profile .photo {
+  padding-top: 9rem;
 }
