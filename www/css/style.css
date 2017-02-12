@@ -111,6 +111,26 @@ input {
   font-size: 2rem;
 }
 
+.friends .form {
+  float: left;
+  margin-bottom: 1rem;
+}
+
+.friends .form input {
+  width: calc(100% - 4rem);
+}
+
+.friends .form button {
+  width: 4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.friends .form input, .friends .form button {
+  float: left;
+  height: 3rem;
+}
+
 .challenge, .record, .share, .notification {
   overflow: auto;
   padding: .5rem .5rem .1rem .5rem;
