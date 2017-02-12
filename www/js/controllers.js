@@ -20,19 +20,19 @@ angular.module('starter.controllers', [])
       var provider = new firebase.auth.FacebookAuthProvider();
       firebase.auth().signInWithPopup(provider).then(function (authData) {
         console.log(authData);
-		var uid = authData.user.uid; 
-		firebase.database().ref('users/' + uid).set({'name' : 'jerry'}); 
-		var temp; 
+		var uid = authData.user.uid;
+		firebase.database().ref('users/' + uid).set({'name' : 'jerry'});
+		var temp;
 		firebase.database().ref('users/' + uid).once('value').then(function(snapshot){
-			temp = snapshot.key; 
-			console.log('Parent' + snapshot.key); 
+			temp = snapshot.key;
+			console.log('Parent' + snapshot.key);
 			if(uid == temp){
-			console.log('success'); 
+			console.log('success');
 			}
 			else{console.log('failure'); }
-		}); 
-		
-        $state.go('tab.profile');
+		});
+
+        $state.go('app.profile');
       }).catch(function(error) {
         console.log(error);
       });
