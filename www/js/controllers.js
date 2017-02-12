@@ -139,7 +139,12 @@ angular.module('starter.controllers', [])
 .controller('NotificationCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
 })
-.controller('ShareCheckCtr', function($scope) {})
+.controller('ShareCheckCtr', function($scope) {
+  $scope.formData = {};
+  $scope.check = function () {
+    console.log($scope.formData.subject); //works
+  }
+})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
   $scope.logout = function() {

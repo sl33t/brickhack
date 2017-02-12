@@ -152,13 +152,9 @@ input {
 }
 
 .share {
-  padding: 1rem;
-}
-
-.share a {
-  text-align: center;
+  width: 100%;
   float: none !important;
-  padding: 0 !important;
+  padding: 1rem !important;
 }
 
 .quest video {

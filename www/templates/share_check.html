@@ -1,6 +1,6 @@
 <ion-view view-title="Share Check">
   <ion-content class="app center quest">
-    <input type="text" id="subject" [(ngModel)]="subject" placeholder="Subject">
+    <input type="text" id="subject" ng-model="formData.subject" placeholder="Subject">
     <button class="record">
       <p>Add Friend</p><span class="ion-ios-plus-outline"></span>
     </button>
@@ -9,8 +9,6 @@
 
     </video>
 
-    <div class="share add_friend">
-      <a href="#/app/share_check">Share</a>
-    </div>
+    <button class="share add_friend" ng-click="check()">Share</button>
   </ion-content>
 </ion-view>
