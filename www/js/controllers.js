@@ -107,7 +107,9 @@ angular.module('starter.controllers', [])
 		for(var uid in allUsers){
 			var email = allUsers[uid]['email'];
 			if(email == $scope.formData.email){
-				firebase.database().ref('notifications/' + uid).set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
+				var userRef = firebase.database().ref('notifications/' + uid);
+				var messageRef = userRef.push(); 
+				messageRef.set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
 			}
 		}
 	});
