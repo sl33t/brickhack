@@ -108,8 +108,8 @@ angular.module('starter.controllers', [])
 			var email = allUsers[uid]['email'];
 			if(email == $scope.formData.email){
 				var userRef = firebase.database().ref('notifications/' + uid);
-				var messageRef = userRef.push(); 
-				messageRef.set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
+				var messageRef = userRef.push();
+				messageRef.set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'});
 			}
 		}
 	});
@@ -158,15 +158,16 @@ angular.module('starter.controllers', [])
   var notifs = snapshot.val();
   for(var notif in notifs){
     //display
-    myhtml += '<div class="content">' +
+    myhtml += '<div class="notification">' +
+      '<div class="content">' +
     '<h3>' + notif["user"] + '</h3>' +
     '<p>' + notif["type"] + '</p>' +
     '</div>' +
     '<a href="#/approve_notification"><span class="ion-checkmark"></span></a>' +
     '<a href="#/decline_notification"><span class="ion-close-round"></span></a>' +
-    '</div>';
+    '</div></div>';
   }
-  document.getElementById('notification_panel').innerHTML = friend_html;
+  document.getElementById('notification_panel').innerHTML = myhtml;
   })
 })
 .controller('ShareCheckCtr', function($scope) {
