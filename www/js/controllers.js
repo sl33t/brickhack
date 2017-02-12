@@ -80,7 +80,8 @@ angular.module('starter.controllers', [])
 		stat_html += '<li>' + profile.wis + '</li>';
 		stat_html += '<li>' + profile.cha + '</li>';
 		document.getElementById('stats').innerHTML = stat_html;
-		document.getElementById('info').innerHTML = '<h3>' + profile.name + '</h3>';
+		var info = document.getElementsByClassName('info');
+		info[0].innerHTML =  '<h3>' + profile.name + '</h3>';
 	});
 })
 .controller('QuestCtr', function($scope) {
