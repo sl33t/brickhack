@@ -156,16 +156,16 @@ angular.module('starter.controllers', [])
 	var user = firebase.auth().currentUser.uid;
 	firebase.database().ref("/notifications/" + user).on("value", function(snapshot) {
   var notifs = snapshot.val();
-  console.log(notifs); 
+  console.log(notifs);
   for(var notif in notifs){
 	  console.log(notif);
-	  myhtml += '<div class="content">' +
+	  myhtml += '<div class="notification"><div class="content">' +
 		'<h3>' + notifs[notif]["user"] + '</h3>' +
 		'<p>' + notifs[notif]["type"] + '</p>' +
 		'</div>' +
 		'<a href="#/approve_notification"><span class="ion-checkmark"></span></a>' +
 		'<a href="#/decline_notification"><span class="ion-close-round"></span></a>' +
-		'</div>'; 
+		'</div></div>';
   }
   document.getElementById('notification_panel').innerHTML = myhtml;
   })
