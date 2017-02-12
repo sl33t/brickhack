@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
 				firebase.database().ref('friends/').set(face_data[0]);
 				firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
-				firebase.database().ref('notifications/').set(face_data[0]); 
+				firebase.database().ref('notifications/').set(face_data[0]);
 			}
 			$state.go('app.profile');
 		});
@@ -103,17 +103,17 @@ angular.module('starter.controllers', [])
   $scope.check = function () {
     console.log($scope.formData.email); //works
 	firebase.database().ref('users').once('value').then(function(snapshot){
-		var allUsers = snapshot.val(); 
+		var allUsers = snapshot.val();
 		for(var uid in allUsers){
 			var email = allUsers[uid]['email'];
 			if(email == $scope.formData.email){
-				firebase.database().ref('notifications/' + uid).set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
+				firebase.database().ref('notifications/' + uid).set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'});
 			}
 		}
 	});
 	//
   }
-	
+
 	firebase.database().ref('friends/' + user).on('value', function(snapshot){
 		if(snapshot.val() != null){
 			var friend_html = '';
@@ -150,7 +150,22 @@ angular.module('starter.controllers', [])
     });
 })
 .controller('NotificationCtr', function($scope) {
+  var myhtml = "";
 	var user = firebase.auth().currentUser.uid;
+	firebase.database().ref("/notifications/" + user).on("value", function(snapshot) {
+  var notifs = snapshot.val();
+  for(var notif in notifs){
+    //display
+    myhtml += '<div class="content">' +
+    '<h3>' + notif["user"] + '</h3>' +
+    '<p>' + notif["type"] + '</p>' +
+    '</div>' +
+    '<a href="#/approve_notification"><span class="ion-checkmark"></span></a>' +
+    '<a href="#/decline_notification"><span class="ion-close-round"></span></a>' +
+    '</div>';
+  }
+  document.getElementById('notification_panel').innerHTML = friend_html;
+  })
 })
 .controller('ShareCheckCtr', function($scope) {
   $scope.formData = {};
