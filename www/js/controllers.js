@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
 			}
-			$state.go('app.profile', {user : face_data[0]});
+			$state.go('app.profile');
 		});
       }).catch(function(error) {
         console.log(error);
@@ -67,10 +67,11 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ProfileCtr', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
-	var uid = $state.params.user;
+.controller('ProfileCtr', function($scope) {
+	var user = firebase.auth().currentUser.uid; 
+	console.log(user); 
 	var profile;
-	firebase.database().ref('users/' + uid).once('value').then(function(snapshot, profile){
+	firebase.database().ref('users/' + user).once('value').then(function(snapshot, profile){
 		profile = snapshot.val();
 		var stat_html = '';
 		stat_html += '<li>' + profile.str + '</li>';
