@@ -17,20 +17,8 @@ angular.module('starter.controllers', [])
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
 			}
+			$state.go('app.profile', {user : face_data[0]});
 		});
-		/*firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1]});
-		var temp;
-		firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
-			temp = snapshot.key;
-			console.log('Parent: ' + snapshot.key);
-			if(face_data[0] == temp){
-				console.log('success');
-			}
-			else{console.log('failure'); }
-		}); **/
-		//updates name to 'not jerry'
-		//firebase.database().ref('users/' + uid).set({'name' : 'not jerry'});
-        $state.go('app.profile', {user : face_data[0]});
       }).catch(function(error) {
         console.log(error);
       });
@@ -79,9 +67,21 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ProfileCtr', function($scope) {
+.controller('ProfileCtr', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
 	var uid = $state.params.user;
-	console.log('Stuff: ' + uid); 
+	var profile;
+	firebase.database().ref('users/' + uid).once('value').then(function(snapshot, profile){
+		profile = snapshot.val();
+		var stat_html = '';
+		stat_html += '<li>' + profile.str + '</li>';
+		stat_html += '<li>' + profile.dex + '</li>';
+		stat_html += '<li>' + profile.con + '</li>';
+		stat_html += '<li>' + profile.int + '</li>';
+		stat_html += '<li>' + profile.wis + '</li>';
+		stat_html += '<li>' + profile.cha + '</li>';
+		document.getElementById('stats').innerHTML = stat_html;
+		document.getElementById('info').innerHTML = '<h3>' + profile.name + '</h3>';
+	});
 })
 .controller('QuestCtr', function($scope) {
 
