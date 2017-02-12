@@ -37,19 +37,6 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('LogoutCtr', function($scope) {
-
-  $scope.logout = function() {
-    firebase.auth().signOut().then(function() {
-      // Sign-out is good!
-    }, function(error) {
-      console.log(error);
-    });
-
-    $state.go('login');
-  }
-})
-
 .controller('ProfileCtr', function($scope) {
 
 })
