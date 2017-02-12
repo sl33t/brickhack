@@ -54,7 +54,11 @@ p, span {
 }
 
 .profile ul {
+<<<<<<< HEAD
   margin-top: 1.75rem; 
+=======
+  margin-top: 2rem;
+>>>>>>> 2ee13a51971560db9c20b8619fb5bb342a995579
   float: left;
 }
 
@@ -62,7 +66,7 @@ p, span {
   margin-top: 1.75rem; 
   float: right;
   text-align: center;
-  width: 60%; 
+  width: 60%;
 }
 
 .profile .info h3 {
@@ -121,6 +125,20 @@ p, span {
   margin-right: 1rem;
 }
 
+.add_friend a {
+  text-decoration: none;
+  font-size: 1.4rem;
+  float: left;
+  padding: .5rem 0rem 1rem 1rem;
+}
+
+.message {
+  clear: both;
+  border-top: 2px solid rgba(255, 255, 255, .3);
+  padding-top: .5rem;
+}
+
+/* Css for menu */
 .ion_content .item {
   background-color: transparent;
   border: none; /*Removes all borders*/
