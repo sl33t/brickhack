@@ -56,20 +56,19 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-	console.log(user);
-	//var profile;
-	firebase.database().ref('users/' + user).once('value').then(function(snapshot){
-      return snapshot.val();
-    }).then(function (profile) {
+    firebase.database().ref('users/' + user).on('value', function(snapshot){
       var stat_html = '';
+      var profile = snapshot.val();
       var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
         var statName = statOrder[i];
-          stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+        stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
       info[0].innerHTML =  '<h3>' + profile.name + '</h3>';
+    }, function (errorObject) {
+      console.log(errorObject);
     });
 })
 .controller('QuestCtr', function($scope) {
