@@ -81,7 +81,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             controller: 'CommunityCtr'
           }
         }
-      });
+      })
+
+      .state('app.share_check', {
+      url: '/share_check',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/share_check.html',
+          controller: 'ShareCheckCtr'
+        }
+      }
+    });
 
   // Each tab has its own nav history stack:
 
