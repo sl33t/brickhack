@@ -34,6 +34,35 @@ angular.module('starter.controllers', [])
       }).catch(function(error) {
         console.log(error);
       });
+
+    // This FB authentication code works in an Android envrionment.
+    // TODO see if it conflicts with the above code.
+    //
+    // facebookConnectPlugin.getLoginStatus( function (success) {
+    //   if (success.status == 'connected') {
+    //      $state.go('tab.profile');
+    //   }
+    //   else {
+    //   facebookConnectPlugin.login(['email']).then( (response) => {
+    //       const facebookCredential = firebase.auth.FacebookAuthProvider
+    //           .credential(response.authResponse.accessToken);
+
+    //       firebase.auth().signInWithCredential(facebookCredential)
+    //       .then((success) => {
+    //           console.log("Firebase success: " + JSON.stringify(success));
+    //           this.userProfile = success;
+    //       })
+    //       .catch((error) => {
+    //           console.log("Firebase failure: " + JSON.stringify(error));
+    //       });
+
+    //   }).catch((error) => { console.log(error) });
+    //   }
+    // }, function (error) {
+    //   console.error("Facebook probs");
+    // }
+
+    // );
   }
 })
 
@@ -53,7 +82,26 @@ angular.module('starter.controllers', [])
 .controller('ProfileCtr', function($scope) {
 
 })
-.controller('QuestCtr', function($scope) {})
+.controller('QuestCtr', function($scope) {
+
+  // capture callback
+  $scope.startVideo = function () {
+    var captureSuccess = function(mediaFiles) {
+      var i, path, len;
+      for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+        path = mediaFiles[i].fullPath;
+        // TODO send file to other person
+      }
+    };
+    // capture error callback
+    var captureError = function(error) {
+      navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+    };
+
+    // start video capture
+    navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
+  }
+})
 .controller('FriendsCtr', function($scope) {})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
