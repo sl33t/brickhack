@@ -62,12 +62,12 @@ angular.module('starter.controllers', [])
     firebase.database().ref('users/' + user).on('value', function(snapshot){
       var stat_html = '';
       var profile = snapshot.val();
-      var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+      var statOrder = ['str', 'dex', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
           var statName = statOrder[i];
-          if (statName != "con"){
+          
             stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
-          }
+          
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
