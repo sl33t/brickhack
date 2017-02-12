@@ -39,4 +39,7 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileCtr', function($scope) {})
 .controller('QuestCtr', function($scope) {})
-.controller('FriendsCtr', function($scope) {});
+.controller('FriendsCtr', function($scope) {})
+
+.controller('AppCtrl', function($scope) {
+});
