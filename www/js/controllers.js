@@ -97,9 +97,9 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-	firebase.database().ref('friends/' + user).on('value', function(snapshot){
+	firebase.database().ref('users/' + user).on('value', function(snapshot){
 		if(snapshot.val() != null){
-			var friend_html = ''; 
+			var potential_html = ''; 
 			var f_list = snapshot.val(); 
 			for(var friend_id in f_list){
 				if(f_list.hasOwnProperty(friend_id)){
