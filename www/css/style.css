@@ -120,10 +120,15 @@ p, span {
 
 .ion_content .item {
   background-color: transparent;
-  border:none;   /*Removes all borders*/
-  color: white;    /*Text color for each item*/
+  border: none; /*Removes all borders*/
+  color: white; /*Text color for each item*/
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.ion_content .item .item-content {
+  padding: 1rem 0;
+
 }
 
 /*Changes the border for the last item*/
