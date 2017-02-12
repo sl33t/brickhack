@@ -18,6 +18,7 @@ angular.module('starter.controllers', [])
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
 				firebase.database().ref('friends/').set(face_data[0]);
 				firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
+				firebase.database().ref('notifications/').set(face_data[0]); 
 			}
 			$state.go('app.profile');
 		});
@@ -95,13 +96,24 @@ angular.module('starter.controllers', [])
     navigator.device.capture.captureVideo(captureSuccess, captureError, {limit:2});
   }
 })
+
 .controller('FriendsCtr', function($scope) {
+	var user = firebase.auth().currentUser.uid;
   $scope.formData = {};
   $scope.check = function () {
     console.log($scope.formData.email); //works
+	firebase.database().ref('users').once('value').then(function(snapshot){
+		var allUsers = snapshot.val(); 
+		for(var uid in allUsers){
+			var email = allUsers[uid]['email'];
+			if(email == $scope.formData.email){
+				firebase.database().ref('notifications/' + uid).set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
+			}
+		}
+	});
+	//
   }
-
-	var user = firebase.auth().currentUser.uid;
+	
 	firebase.database().ref('friends/' + user).on('value', function(snapshot){
 		if(snapshot.val() != null){
 			var friend_html = '';
@@ -118,6 +130,7 @@ angular.module('starter.controllers', [])
       console.log(errorObject);
     });
 })
+
 .controller('CommunityCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
 	firebase.database().ref('friends/' + user).on('value', function(snapshot){
