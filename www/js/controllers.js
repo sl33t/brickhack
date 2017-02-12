@@ -93,6 +93,7 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {})
 .controller('CommunityCtr', function($scope) {})
+.controller('NotificationCtr', function($scope) {})
 .controller('ShareCheckCtr', function($scope) {})
 
 .controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
