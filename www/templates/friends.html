@@ -2,7 +2,10 @@
   <ion-content class="friends center app">
     <ion-scroll scrollbar-x="false" scrollbar-y="false">
 		<div id='container'>
-      <input type="email" id="email" [(ngModel)]="email" placeholder="Add by Email">
+      <div class="form">
+        <input type="email" id="email" [(ngModel)]="email" placeholder="Add by Email">
+        <button class="record" ng-click="addFriend(email)">Add</button>
+      </div>
       <div class="friend">
         <h3>Friend 1</h3><span class="ion-ios-plus-outline"></span>
       </div>
