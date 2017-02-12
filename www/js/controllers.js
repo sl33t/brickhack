@@ -97,7 +97,6 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-<<<<<<< HEAD
 	firebase.database().ref('friends/' + user).on('value', function(snapshot){
 		if(snapshot.val() != null){
 			var friend_html = ''; 
@@ -131,9 +130,6 @@ angular.module('starter.controllers', [])
 	}, function(errorObject) {
       console.log(errorObject);
     });
-=======
-
->>>>>>> 13cfecc140fe18f5941b640fbce5d0d0579f6e62
 })
 .controller('NotificationCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
