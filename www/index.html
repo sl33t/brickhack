@@ -47,6 +47,14 @@
 	  firebase.initializeApp(config);
 	</script>
 
+  <!-- Camera -->
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+      function onDeviceReady() {
+          console.log(navigator.camera);
+      }
+  </script>
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
