@@ -108,8 +108,8 @@ angular.module('starter.controllers', [])
 			var email = allUsers[uid]['email'];
 			if(email == $scope.formData.email){
 				var userRef = firebase.database().ref('notifications/' + uid);
-				var messageRef = userRef.push(); 
-				messageRef.set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'}); 
+				var messageRef = userRef.push();
+				messageRef.set({user : firebase.auth().currentUser.displayName, 'type': 'Friend'});
 			}
 		}
 	});
