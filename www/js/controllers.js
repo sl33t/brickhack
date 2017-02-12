@@ -94,7 +94,7 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-	firebase.database().ref('friends/' + user).on(
+	
 })
 .controller('CommunityCtr', function($scope) {})
 .controller('NotificationCtr', function($scope) {
@@ -112,4 +112,8 @@ angular.module('starter.controllers', [])
 
     $state.go('login');
   }
-});
+})
+
+
+.controller('DeclineNotificationCtr', function($scope) {})
+.controller('ApproveNotificationCtr', function($scope) {});
