@@ -4,57 +4,100 @@ angular.module('starter.controllers', [])
 .controller('LoginCtr', function($scope, LoginService, $ionicPopup, $state) {
   $scope.data = {};
 
-  $scope.FBLogin = function() {
-      var provider = new firebase.auth.FacebookAuthProvider();
-      firebase.auth().signInWithPopup(provider).then(function (authData) {
-        console.log(authData);
-		var face_data = [authData.user.uid, authData.user.displayName, authData.user.email];
-		firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
-			if(snapshot.val() !== null){
-				console.log('User exists');
-			}
-			else{
-				console.log('User doesn\'t exist');
-				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
-				firebase.database().ref('friends/').set(face_data[0]);
-				firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
-				firebase.database().ref('notifications/').set(face_data[0]);
-			}
-			$state.go('app.profile');
-		});
-      }).catch(function(error) {
-        console.log(error);
-      });
+   $scope.FBLogin = function() {
+
+  //     var provider = new firebase.auth.FacebookAuthProvider();
+  //     firebase.auth().signInWithPopup(provider).then(function (authData) {
+  //       console.log(authData);
+  //   	var face_data = [authData.user.uid, authData.user.displayName, authData.user.email];
+  //   	firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
+  //   		if(snapshot.val() !== null){
+  //   			console.log('User exists');
+  //   		}
+  //   		else{
+  //   			console.log('User doesn\'t exist');
+  //   			firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
+  //   			firebase.database().ref('friends/').set(face_data[0]);
+  //   			firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
+  //   			firebase.database().ref('notifications/').set(face_data[0]);
+  //   		}
+  //   		$state.go('app.profile');
+  //   	});
+  //     }).catch(function(error) {
+  //       console.log(error);
+  //     });
 
     // This FB authentication code works in an Android envrionment.
-    // TODO see if it conflicts with the above code.
-    //
-    // facebookConnectPlugin.getLoginStatus( function (success) {
-    //   if (success.status == 'connected') {
-    //      $state.go('tab.profile');
-    //   }
-    //   else {
-    //   facebookConnectPlugin.login(['email']).then( (response) => {
-    //       const facebookCredential = firebase.auth.FacebookAuthProvider
-    //           .credential(response.authResponse.accessToken);
 
-    //       firebase.auth().signInWithCredential(facebookCredential)
-    //       .then((success) => {
-    //           console.log("Firebase success: " + JSON.stringify(success));
-    //           this.userProfile = success;
-    //       })
-    //       .catch((error) => {
-    //           console.log("Firebase failure: " + JSON.stringify(error));
-    //       });
+  // Progress of android fb code
+       facebookConnectPlugin.getLoginStatus( function (success) {
+       if (success.status == 'connected') {
+          $state.go('app.profile');
+       }
+       else {
+         facebookConnectPlugin.login(['email'], (response) => {
+           if( response.authResponse) {
 
-    //   }).catch((error) => { console.log(error) });
-    //   }
-    // }, function (error) {
-    //   console.error("Facebook probs");
-    // }
+             // Get my own name an id
+             facebookConnectPlugin.api('/me', null, (resp) => {
 
-    // );
-  }
+               facebookConnectPlugin.api("/{user-id}", (idresp) => {
+               console.log("uid = " + idresp.id + ", response.name = "+ resp.name);
+
+
+               // IDK what this does, but i don't want to remove it
+               const authCredential = firebase.auth.FacebookAuthProvider
+                   .credential(response.authResponse.accessToken);
+
+               // Add to firebase
+               var face_data = [resp.id, resp.name];
+               console.log("resp.id = " + resp.id + ", response.name = "+ resp.name);
+               firebase.database().ref('users/' + face_data[0]).once('value').then(function(snapshot){
+                 if(snapshot.val() !== null){
+                   console.log('User exists');
+                 }
+                 else{
+                   console.log('User doesn\'t exist');
+                   firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
+                   firebase.database().ref('friends/').set(face_data[0]);
+                   firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
+                 }
+                 $state.go('app.profile');
+               });
+                 }).catch(function(error) {
+                   console.log(error);
+                 });
+
+             });}});}
+       //}
+         }, (error => {}));
+
+     // facebookConnectPlugin.getLoginStatus( function (success) {
+     //   if (success.status == 'connected') {
+     //      $state.go('tab.profile');
+     //   }
+     //   else {
+     //   facebookConnectPlugin.login(['email']).then( (response) => {
+     //       const facebookCredential = firebase.auth.FacebookAuthProvider
+     //           .credential(response.authResponse.accessToken);
+
+     //       firebase.auth().signInWithCredential(facebookCredential)
+     //       .then((success) => {
+     //           console.log("Firebase success: " + JSON.stringify(success));
+     //           this.userProfile = success;
+     //       })
+     //       .catch((error) => {
+     //           console.log("Firebase failure: " + JSON.stringify(error));
+     //       });
+
+     //   }).catch((error) => { console.log(error) });
+     //   }
+     // }, function (error) {
+     //   console.error("Facebook probs");
+     // }
+
+     // );
+   }
 })
 
 .controller('ProfileCtr', function($scope) {
