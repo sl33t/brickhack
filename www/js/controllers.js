@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
       var stat_html = '';
       var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
-        var statName = statOrder[i];
+          var statName = statOrder[i];
           stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
       }
       document.getElementById('stats').innerHTML = stat_html;
