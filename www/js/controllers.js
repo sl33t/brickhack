@@ -106,4 +106,8 @@ angular.module('starter.controllers', [])
 
     $state.go('login');
   }
-});
+})
+
+
+.controller('DeclineNotificationCtr', function($scope) {})
+.controller('ApproveNotificationCtr', function($scope) {});

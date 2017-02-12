@@ -100,6 +100,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'ShareCheckCtr'
         }
       }
+    })
+
+    .state('decline_notification', {
+      url: '/decline_notification',
+      controller: 'DeclineNotificationCtr'
+    })
+    .state('approve_notification', {
+      url: '/approve_notification',
+      controller: 'ApproveNotificationCtr'
     });
 
   // Each tab has its own nav history stack:
