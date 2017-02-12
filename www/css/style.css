@@ -158,7 +158,7 @@ input {
 .share a {
   text-align: center;
   float: none !important;
-  padding: 0rem !important;
+  padding: 0 !important;
 }
 
 .quest video {
@@ -166,7 +166,7 @@ input {
   width: 298px;
   background-image: url("/img/45-degree-fabric-light.png");
   margin-top: 1rem;
-  box-shadow:inset 0px 0px 0px 2px #000;
+  box-shadow:inset 0 0 0 2px #000;
 }
 
 .quest span {
@@ -177,7 +177,7 @@ input {
   text-decoration: none;
   font-size: 1.4rem;
   float: left;
-  padding: .5rem 0rem 1rem 1rem;
+  padding: .5rem 0 1rem 1rem;
 }
 
 .message {
@@ -191,18 +191,26 @@ input {
   padding: 1rem .5rem;
 }
 
+.notification .content {
+  width: 70%;
+  float: left;
+}
+
 .notification h3 {
-  text-align: center;
-  display: inline;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+}
+
+.notification p{
+  float: left;
+  font-size: 1rem;
 }
 
 .notification a {
   float: right;
-  padding-top: .4rem;
-}
-
-.notification a:first-child {
-  float: left;
+  padding-top: 1.5rem;
+  padding-left: .75rem;
 }
 
 /* Css for menu */

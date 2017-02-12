@@ -64,7 +64,9 @@ angular.module('starter.controllers', [])
       var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
           var statName = statOrder[i];
-          stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+          if (statName != "con"){
+            stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+          }
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
@@ -95,6 +97,7 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
+<<<<<<< HEAD
 	firebase.database().ref('friends/' + user).on('value', function(snapshot){
 		if(snapshot.val() != null){
 			var friend_html = ''; 
@@ -128,6 +131,9 @@ angular.module('starter.controllers', [])
 	}, function(errorObject) {
       console.log(errorObject);
     });
+=======
+
+>>>>>>> 13cfecc140fe18f5941b640fbce5d0d0579f6e62
 })
 .controller('NotificationCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
