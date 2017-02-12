@@ -16,7 +16,8 @@ angular.module('starter.controllers', [])
 			else{
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
-				firebase.database().ref('friends/').set(face_data[0]);
+				firebase.database().ref('friends/').set(face_data[0]); 
+				firebase.database().ref('friends/' + face_data[0]).set({'RickyID' : 'ricky', 'ArunID' : 'arun'});
 			}
 			$state.go('app.profile');
 		});
@@ -96,9 +97,40 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-
+	firebase.database().ref('friends/' + user).on('value', function(snapshot){
+		if(snapshot.val() != null){
+			var friend_html = ''; 
+			var f_list = snapshot.val(); 
+			for(var friend_id in f_list){
+				if(f_list.hasOwnProperty(friend_id)){
+					//display
+					friend_html += '<div class="friend"><h3>' + f_list[friend_id] + '</h3><span class="ion-ios-plus-outline"></span></div>';
+				}
+			}
+			document.getElementById('container2').innerHTML = friend_html; 
+		}
+	}, function(errorObject) {
+      console.log(errorObject);
+    });
 })
-.controller('CommunityCtr', function($scope) {})
+.controller('CommunityCtr', function($scope) {
+	var user = firebase.auth().currentUser.uid;
+	firebase.database().ref('friends/' + user).on('value', function(snapshot){
+		if(snapshot.val() != null){
+			var friend_html = ''; 
+			var f_list = snapshot.val(); 
+			for(var friend_id in f_list){
+				if(f_list.hasOwnProperty(friend_id)){
+					//display
+					friend_html += '<div class="friend"><h3>' + f_list[friend_id] + '</h3><div class = "message"><p>some message</p></div></div>';
+				}
+			}
+			document.getElementById('container').innerHTML = friend_html; 
+		}
+	}, function(errorObject) {
+      console.log(errorObject);
+    });
+})
 .controller('NotificationCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
 })
