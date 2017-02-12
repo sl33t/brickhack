@@ -4,18 +4,6 @@ angular.module('starter.controllers', [])
 .controller('LoginCtr', function($scope, LoginService, $ionicPopup, $state) {
   $scope.data = {};
 
-  $scope.login = function($scope) {
-    // TODO Facebook login magic
-    // This example just checks LoginService in service.js, provided a username and password.
-    LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
-      $state.go('tab.dash');
-    }).error(function(data) {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Login failed!',
-        template: 'Please check your credentials!'
-        });
-      });
-    }
   $scope.FBLogin = function() {
       var provider = new firebase.auth.FacebookAuthProvider();
       firebase.auth().signInWithPopup(provider).then(function (authData) {
@@ -50,13 +38,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LogoutCtr', function($scope) {
-  firebase.auth().signOut().then(function() {
-    // Sign-out is good!
-  }, function(error) {
-    console.log(error);
-  });
 
-  // TODO: redirect back to login page
+  $scope.logout = function() {
+    firebase.auth().signOut().then(function() {
+      // Sign-out is good!
+    }, function(error) {
+      console.log(error);
+    });
+
+    $state.go('login');
+  }
 })
 
 .controller('ProfileCtr', function($scope) {
@@ -65,5 +56,14 @@ angular.module('starter.controllers', [])
 .controller('QuestCtr', function($scope) {})
 .controller('FriendsCtr', function($scope) {})
 
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, $ionicPopup, $timeout, $ionicModal, $state) {
+  $scope.logout = function() {
+    firebase.auth().signOut().then(function () {
+      // Sign-out is good!
+    }, function (error) {
+      console.log(error);
+    });
+
+    $state.go('login');
+  }
 });
