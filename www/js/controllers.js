@@ -42,7 +42,7 @@ angular.module('starter.controllers', [])
 		}); **/
 		//updates name to 'not jerry'
 		//firebase.database().ref('users/' + uid).set({'name' : 'not jerry'});
-        $state.go('app.profile');
+        $state.go('app.profile', {user : face_data[0]});
       }).catch(function(error) {
         console.log(error);
       });
@@ -60,7 +60,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileCtr', function($scope) {
-
+	var uid = $state.params.user;
+	console.log('Stuff: ' + uid); 
 })
 .controller('QuestCtr', function($scope) {})
 .controller('FriendsCtr', function($scope) {})
