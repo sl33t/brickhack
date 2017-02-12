@@ -191,18 +191,26 @@ input {
   padding: 1rem .5rem;
 }
 
+.notification .content {
+  width: 70%;
+  float: left;
+}
+
 .notification h3 {
-  text-align: center;
-  display: inline;
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+}
+
+.notification p{
+  float: left;
+  font-size: 1rem;
 }
 
 .notification a {
   float: right;
-  padding-top: .4rem;
-}
-
-.notification a:first-child {
-  float: left;
+  padding-top: 1.5rem;
+  padding-left: .75rem;
 }
 
 /* Css for menu */

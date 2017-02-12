@@ -16,7 +16,7 @@ angular.module('starter.controllers', [])
 			else{
 				console.log('User doesn\'t exist');
 				firebase.database().ref('users/' + face_data[0]).set({'name' : face_data[1], 'email' : face_data[2],  'str' : 0, 'dex' : 0, 'con' : 0, 'int' : 0, 'wis' : 0, 'cha' : 0});
-				firebase.database().ref('friends/').set(face_data[0]); 
+				firebase.database().ref('friends/').set(face_data[0]);
 			}
 			$state.go('app.profile');
 		});
@@ -63,7 +63,9 @@ angular.module('starter.controllers', [])
       var statOrder = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
       for (var i = 0; i < statOrder.length; i++) {
           var statName = statOrder[i];
-          stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+          if (statName != "con"){
+            stat_html += statName.toUpperCase() +'<li>' + profile[statName] + '</li>';
+          }
       }
       document.getElementById('stats').innerHTML = stat_html;
       var info = document.getElementsByClassName('info');
@@ -94,7 +96,7 @@ angular.module('starter.controllers', [])
 })
 .controller('FriendsCtr', function($scope) {
 	var user = firebase.auth().currentUser.uid;
-	
+
 })
 .controller('CommunityCtr', function($scope) {})
 .controller('NotificationCtr', function($scope) {
