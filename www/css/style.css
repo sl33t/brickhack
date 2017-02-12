@@ -1,4 +1,14 @@
-/* Empty. Add your own CSS if you like */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p, span {
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
 .app * {
   color: white;
 }
@@ -34,10 +44,13 @@
 
 .profile li {
   border: .2rem solid white;
-  padding: 2rem;
+  text-align: center;
+  padding-top: 1rem;
   border-radius: 50%;
-  width: 3rem;
+  width: 4rem;
+  height: 4rem;
   margin: .5rem;
+  font-size: 1.8rem;
 }
 
 .profile ul {
@@ -77,80 +90,30 @@
   font-size: 2rem;
 }
 
-/*
-.wrapper {
-  position: relative;
-  margin: 40px auto;
-  background-image: linear-gradient(red, black);
+.challenge, .record, .share {
+  overflow: auto;
+  padding: .5rem .5rem .1rem .5rem;
+  border-radius: .1rem;
+  margin-top: .75rem;
+  width: 100%;
 }
 
-.wrapper, .wrapper * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+.challenge {
+  border: .1rem solid white;
 }
 
-.wrapper {
-  width: 250px;
+.record, .share {
+  background-color: rgba( 255, 255, 255, .2);
+}
+
+.quest video {
   height: 250px;
+  width: 298px;
+  background-image: url("/img/45-degree-fabric-light.png");
+  margin-top: 1rem;
+  box-shadow:inset 0px 0px 0px 2px #000;
 }
 
-.wrapper .pie {
-  width: 50%;
-  height: 100%;
-  transform-origin: 100% 50%;
-  position: absolute;
-  background: #08C;
-  border: 5px solid rgba(0,0,0,0.5);
+.quest span {
+  margin-right: 1rem;
 }
-
-.wrapper .spinner {
-  border-radius: 100% 0 0 100% / 50% 0 0 50%;
-  z-index: 200;
-  border-right: none;
-  animation: rota 5s linear infinite;
-}
-
-.wrapper:hover .spinner,
-.wrapper:hover .filler,
-.wrapper:hover .mask {
-  animation-play-state: running;
-}
-
-.wrapper .filler {
-  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
-  left: 50%;
-  opacity: 0;
-  z-index: 100;
-  animation: opa 5s steps(1, end) infinite reverse;
-  border-left: none;
-}
-
-.wrapper .mask {
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  background: inherit;
-  opacity: 1;
-  z-index: 300;
-  animation: opa 5s steps(1, end) infinite;
-}
-
-@keyframes rota {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes opa {
-  0% {
-    opacity: 1;
-  }
-  50%, 100% {
-    opacity: 0;
-  }
-}
-
-*/
